@@ -1,8 +1,17 @@
-# Bit-Swap
+# Bucket Bit-Swap
 
-Code for reproducing results of [Bit-Swap: Recursive Bits-Back Coding for Lossless Compression with Hierarchical Latent Variables](https://arxiv.org/abs/1905.06845), appearing at [International Conference on Machine Learning 2019](https://icml.cc/).
+This repository features an implementation of bucket bit-swap for [Information Theory in TCS (COMSE 6998-004) (Columbia, Fall '20)](https://magiclinux.github.io/ittcs20/).
 
-The code is written by [Friso H. Kingma](https://www.fhkingma.com/). The paper is written by [Friso H. Kingma](https://www.fhkingma.com/), [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) and [Jonathan Ho](http://www.jonathanho.me/).
+This repository is a copy of Friso H. Kingma's [repository](https://github.com/fhkingma/bitswap) which features
+code for reproducing results of [Bit-Swap: Recursive Bits-Back Coding for Lossless Compression with Hierarchical Latent Variables](https://arxiv.org/abs/1905.06845), appearing at [International Conference on Machine Learning 2019](https://icml.cc/).
+
+All code related to bucket bitswap is by J.R. Carneiro Filho. The base code is written by [Friso H. Kingma](https://www.fhkingma.com/). The paper is written by [Friso H. Kingma](https://www.fhkingma.com/), [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) and [Jonathan Ho](http://www.jonathanho.me/).
+
+The Project section is written by J.R. Carneiro Filho and the repository section is written by [Friso H. Kingma](https://www.fhkingma.com/) and modified by J.R. Carneiro Filho
+
+# **Project** 
+
+# **Repository**
 
 ## Contents
 1. [Introduction](#introduction)
