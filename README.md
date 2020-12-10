@@ -128,7 +128,12 @@ First download the unscaled ImageNet validation set [here](http://www.image-net.
 cd ~/bitswap/model/data/imagenetfull/train/class
 ls | shuf -n 5000 | xargs -i mv {} ~/bitswap/model/data/imagenetcrop/test/class
 ```
-
+<a name="bucketedimagenet"></a>
+##### Prepare Bucketed ImageNet (32x32)
+First download the downsized version of ImageNet [here](http://image-net.org/small/download.php). Unpack the train and validation set directories in ``model/data/train_32x32`` and ``model/data/valid_32x32`` respectively. After that, run
+```
+python bucket_processing.py
+```
 <a name="checkpoints"></a>
 ##### Pretrained model checkpoints
 Pretrained (PyTorch) model checkpoints:
