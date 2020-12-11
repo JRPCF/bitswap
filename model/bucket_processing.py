@@ -73,7 +73,4 @@ def bucket_paths(path='~/train_32x32', outfolder='~/train_32x32/', n=1):
 if __name__ == '__main__':
     number_of_buckets = 5
     bucket_paths(path='data/train_32x32',outfolder='data/bucket_imagenet/train',n=number_of_buckets)
-    bucket_paths(path='data/valid_32x32',outfolder='./data/bucket_imagenet/valid',n=number_of_buckets)
-    for i in range(number_of_buckets): 
-        convert_path_to_npy(path='data/bucket_imagenet/train', outfile='data/imagenet/train/bucket'+i+'.npy')
-        convert_path_to_npy(path='data/bucket_imagenet/valid', outfile='data/imagenet/test/bucket'+str(i)+'.npy')
+    bucket_paths(path='data/valid_32x32',outfolder='data/bucket_imagenet/valid',n=number_of_buckets)

@@ -57,7 +57,7 @@ class Model(nn.Module):
         if root_process:
             current_time = datetime.now().strftime('%b%d_%H-%M-%S')
             log_dir = os.path.join(
-                'runs/imagenet/', current_time + '_' + socket.gethostname() + tag)
+                'runs/bucket_imagenet/', current_time + '_' + socket.gethostname() + tag)
             self.log_dir = log_dir
             self.logger = SummaryWriter(log_dir=self.log_dir)
 
@@ -600,7 +600,7 @@ def warmup(model, device, data_loader, warmup_batches, root_process):
             model.logger.add_scalar(f'z{i}/KL/train', kl[i - 1], 0)
 
 
-def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_process, schedule=True, decay=0.99995):
+def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_process, schedule=True, decay=0.99995, bucket):
     # convert model to train mode (activate Dropout etc.)
     model.train()
 
@@ -724,7 +724,7 @@ def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_
         print(f'====> Epoch: {epoch} Average loss: {elbo:.4f}')
 
 
-def test(model, device, epoch, ema, data_loader, tag, root_process):
+def test(model, device, epoch, ema, data_loader, tag, root_process, bucket):
     # convert model to evaluation mode (no Dropout etc.)
     model.eval()
 
@@ -805,10 +805,10 @@ def test(model, device, epoch, ema, data_loader, tag, root_process):
         # if the current ELBO is better than the ELBO's before, save parameters
         if elbo < model.best_elbo and not np.isnan(elbo):
             model.logger.add_scalar('elbo/besttest', elbo, epoch)
-            if not os.path.exists(f'params/imagenet/'):
-                os.makedirs(f'params/imagenet/')
-            torch.save(model.state_dict(), f'params/imagenet/{tag}')
-            torch.save(model.state_dict(), f'params/imagenet/epoch{epoch}_{tag}')
+            if not os.path.exists(f'params/bucket_imagenet/'):
+                os.makedirs(f'params/bucket_imagenet/')
+            torch.save(model.state_dict(), f'params/bucket_imagenet/{bucket}/{tag}')
+            torch.save(model.state_dict(), f'params/bucket_imagenet/{bucket}/epoch{epoch}_{tag}')
             print("saved params\n")
             model.best_elbo = elbo
 
@@ -1026,8 +1026,8 @@ if __name__ == '__main__':
         # do the training loop and run over the test-set 1/5 epochs.
         print("Training") if root_process else print("Training with ya!")
         for epoch in range(1, epochs + 1):
-            train(model, device, epoch, train_loader, optimizer, ema, log_interval, root_process, schedule, decay)
-            test(model, device, epoch, ema, test_loader, tag, root_process)
+            train(model, device, epoch, train_loader, optimizer, ema, log_interval, root_process, schedule, decay, bucket)
+            test(model, device, epoch, ema, test_loader, tag, root_process, bucket)
         
     #########################################################################################################
 
