@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 # function to convert ImageNet folder files into a Numpy compatible .npy file
 # based on create_imagenet_benchmark_datasets.py from https://github.com/aravindsrinivas/flowpp
-def convert_path_to_npy(*, path='~/train_32x32', outfile='~/train_32x32.npy'):
+def convert_path_to_npy(*, path='~/train', outfile='~/train.npy'):
     assert isinstance(path, str), "Expected a string input for the path"
     assert os.path.exists(path), "Input path doesn't exist"
 
@@ -15,7 +15,7 @@ def convert_path_to_npy(*, path='~/train_32x32', outfile='~/train_32x32.npy'):
     files = [f for f in listdir(path) if isfile(join(path, f))]
     print('Number of valid images is:', len(files))
     imgs = []
-
+    
     # check all images for correct shapes etc. and dump them into
     for i in tqdm(range(len(files))):
         print(i)
@@ -39,5 +39,5 @@ def convert_path_to_npy(*, path='~/train_32x32', outfile='~/train_32x32.npy'):
     np.save(outfile, imgs)
 
 if __name__ == '__main__':
-    convert_path_to_npy(path='data/train_32x32', outfile='data/imagenet/train/train.npy')
-    convert_path_to_npy(path='data/valid_32x32', outfile='data/imagenet/test/test.npy')
+    convert_path_to_npy(path='data/train', outfile='data/imagenet/train/train.npy')
+    convert_path_to_npy(path='data/valid', outfile='data/imagenet/test/test.npy')
