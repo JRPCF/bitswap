@@ -12,11 +12,12 @@ def convert_path_to_npy(*, path='~/train', outfile='~/train.npy'):
     assert os.path.exists(path), "Input path doesn't exist"
 
     # make list of files
-    files = [f for f in listdir(path) if isfile(join(path, f))]
+    files_original = [f for f in listdir(path) if isfile(join(path, f))]
     print('Number of valid images is:', len(files))
-    imgs = []
+    
     
     # check all images for correct shapes etc. and dump them into
+    imgs = []
     for i in tqdm(range(len(files))):
         print(i)
         img = scipy.ndimage.imread(join(path, files[i]))

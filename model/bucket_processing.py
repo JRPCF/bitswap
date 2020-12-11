@@ -32,6 +32,7 @@ def bucket_paths(path='~/train_32x32', outfolder='~/train_32x32/', n=1):
     print('Number of valid images is:', len(files))
     
     images = [_process_path(path) for path in files]
+    print("pre-processing paths complete")
     kmeans = bucket([x for x in images if x is not None], n)
     files = [files[i] for i in range(len(files)) if images[i] is not None]
     groups = {}
