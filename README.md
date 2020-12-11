@@ -1,8 +1,17 @@
-# Bit-Swap
+# Bucket Bit-Swap
 
-Code for reproducing results of [Bit-Swap: Recursive Bits-Back Coding for Lossless Compression with Hierarchical Latent Variables](https://arxiv.org/abs/1905.06845), appearing at [International Conference on Machine Learning 2019](https://icml.cc/).
+This repository features an implementation of bucket bit-swap for [Information Theory in TCS (COMSE 6998-004) (Columbia, Fall '20)](https://magiclinux.github.io/ittcs20/).
 
-The code is written by [Friso H. Kingma](https://www.fhkingma.com/). The paper is written by [Friso H. Kingma](https://www.fhkingma.com/), [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) and [Jonathan Ho](http://www.jonathanho.me/).
+This repository is a copy of Friso H. Kingma's [repository](https://github.com/fhkingma/bitswap) which features
+code for reproducing results of [Bit-Swap: Recursive Bits-Back Coding for Lossless Compression with Hierarchical Latent Variables](https://arxiv.org/abs/1905.06845), appearing at [International Conference on Machine Learning 2019](https://icml.cc/).
+
+All code related to bucket bitswap is by J.R. Carneiro Filho. The base code is written by [Friso H. Kingma](https://www.fhkingma.com/). The paper is written by [Friso H. Kingma](https://www.fhkingma.com/), [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) and [Jonathan Ho](http://www.jonathanho.me/).
+
+The Project section is written by J.R. Carneiro Filho and the repository section is written by [Friso H. Kingma](https://www.fhkingma.com/) and modified by J.R. Carneiro Filho
+
+# **Project** 
+
+# **Repository**
 
 ## Contents
 1. [Introduction](#introduction)
@@ -119,7 +128,12 @@ First download the unscaled ImageNet validation set [here](http://www.image-net.
 cd ~/bitswap/model/data/imagenetfull/train/class
 ls | shuf -n 5000 | xargs -i mv {} ~/bitswap/model/data/imagenetcrop/test/class
 ```
-
+<a name="bucketedimagenet"></a>
+##### Prepare Bucketed ImageNet (32x32)
+First download the downsized version of ImageNet [here](http://image-net.org/small/download.php). Unpack the train and validation set directories in ``model/data/train_32x32`` and ``model/data/valid_32x32`` respectively. After that, run
+```
+python bucket_processing.py
+```
 <a name="checkpoints"></a>
 ##### Pretrained model checkpoints
 Pretrained (PyTorch) model checkpoints:
