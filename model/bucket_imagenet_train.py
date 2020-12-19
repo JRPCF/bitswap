@@ -600,7 +600,7 @@ def warmup(model, device, data_loader, warmup_batches, root_process):
             model.logger.add_scalar(f'z{i}/KL/train', kl[i - 1], 0)
 
 
-def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_process, schedule=True, decay=0.99995, bucket):
+def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_process, schedule=True, decay=0.99995):
     # convert model to train mode (activate Dropout etc.)
     model.train()
 
@@ -724,7 +724,7 @@ def train(model, device, epoch, data_loader, optimizer, ema, log_interval, root_
         print(f'====> Epoch: {epoch} Average loss: {elbo:.4f}')
 
 
-def test(model, device, epoch, ema, data_loader, tag, root_process, bucket):
+def test(model, device, epoch, ema, data_loader, tag, root_process):
     # convert model to evaluation mode (no Dropout etc.)
     model.eval()
 
@@ -923,8 +923,8 @@ if __name__ == '__main__':
     train_path = 'data/bucket_imagenet/train'
     val_path = 'data/bucket_imagenet/valid'
     
-    train_buckets = len[f for f in listdir(path) if isfile(join(path, f)) and pattern.match(f)]
-    val_buckets = len[f for f in listdir(path) if isfile(join(path, f)) and pattern.match(f)]
+    train_buckets = [f for f in listdir(train_path) if isfile(join(train_path, f)) and pattern.match(f)]
+    val_buckets = [f for f in listdir(val_path) if isfile(join(val_path, f)) and pattern.match(f)]
     
     assert set(train_buckets)==set(val_buckets)
     assert len(set(train_buckets))==len(train_buckets)
