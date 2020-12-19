@@ -200,7 +200,7 @@ mpiexec -np 8 python imagenet_train.py --nz=2 --width=255
 ```
 mpiexec -np 8 python imagenet_train.py --nz=1 --width=256
 ```
-##### ImageNet (32x32) (on 8 GPU's with OpenMPI + Horovod)
+##### Bucketed ImageNet (32x32) (on 8 GPU's with OpenMPI + Horovod)
 ###### 4 latent layers
 ```
 mpiexec -np 8 python bucket_imagenet_train.py --nz=4 --width=254
